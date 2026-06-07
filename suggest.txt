@@ -1,0 +1,51 @@
+Profiled it (10k candidates under cProfile = 74s; the profiler inflates ~3x, so real cost ≈ 25s/10k
+  → matches your ~250s for 100k). Here's where the time actually goes:
+
+  Where the time goes
+
+  ┌──────────────────────────┬──────────────────────┬───────────────┬────────────────────────────┐
+  │         Hot spot         │         Code         │     Cost      │            Why             │
+  ├──────────────────────────┼──────────────────────┼───────────────┼────────────────────────────┤
+  │                          │ rank.py:274 — sum(1  │               │ Substring-scans a big      │
+  │ count_term_hits          │ for term in terms if │ 13.1s         │ concatenated text against  │
+  │                          │  term in text)       │               │ ~80 terms × 6 categories,  │
+  │                          │                      │               │ per candidate              │
+  ├──────────────────────────┼──────────────────────┼───────────────┼────────────────────────────┤
+  │ any(...)                 │ has_any +            │ 11.7s         │ Same substring scanning    │
+  │                          │ category_score       │               │ pattern                    │
+  ├──────────────────────────┼──────────────────────┼───────────────┼────────────────────────────┤
+  │                          │ rank.py:327 — term   │ 7.5s (7.4M    │ Cross-checks every skill   │
+  │ category_score genexpr   │ in skill or skill in │ calls)        │ against every term         │
+  │                          │  term                │               │                            │
+  ├──────────────────────────┼──────────────────────┼───────────────┼────────────────────────────┤
+  │ has_any genexpr          │ rank.py:278          │ 6.5s (15M     │ More substring scans       │
+  │                          │                      │ calls)        │                            │
+  ├──────────────────────────┼──────────────────────┼───────────────┼────────────────────────────┤
+  │                          │                      │ 3.5s tot /    │                            │
+  │ select_top_skills.weight │ rank.py:736          │ 19.5s         │ See "redundant work" below │
+  │                          │                      │ cumulative    │                            │
+  │                          │                      │ (26%)         │                            │
+  └──────────────────────────┴──────────────────────┴───────────────┴────────────────────────────┘
+
+  Two root causes:
+
+  1. Term matching dominates (>50%). It's pure-Python term in text loops over hundreds of terms, run
+  on a long text blob for every one of 100k candidates.
+  2. Redundant work. select_top_skills() is computed twice per candidate (once for output at :701,
+  again inside build_reasoning at :791). And sum(CORE_TERMS.values(), []) — flattening all ~80 core
+  terms into a list — is rebuilt on every call at :551 and :741 instead of once. Plus
+  score_technical_fit() runs over the full text and again over career text (:479).
+
+  How to speed it up (biggest lever first)
+
+  1. Parallelize with multiprocessing — ~5× win, zero logic change. Each candidate is scored
+  independently, so this is embarrassingly parallel. Your metadata says 16 cores. Split the file
+  across workers (each parses + scores its chunk, returns its own top-100), then merge and take the
+  global top-100. Because every candidate's raw_score is computed identically regardless of process,
+  and the final sort is already deterministic (-raw_score, candidate_id), the output is byte-for-byte
+  identical — no scoring risk. multiprocessing is stdlib, CPU-only, no network → fully within the
+  rules. This alone should take ~250s → ~40–50s.
+
+  2. Kill the redundant work — ~1.3–1.5× on top, also risk-free:
+  - Precompute ALL_CORE_TERMS = [...] once at module load (remove the repeated sum(...) flattening).
+  - Compute select_top_skills() once per candidate, pass it into build_reasoning.

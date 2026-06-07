@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+:root {
+  --background: 210 24% 98%;
+  --foreground: 222 29% 13%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 29% 13%;
+  --primary: 171 80% 24%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 218 21% 92%;
+  --secondary-foreground: 222 29% 18%;
+  --muted: 215 22% 94%;
+  --muted-foreground: 218 11% 42%;
+  --accent: 37 92% 92%;
+  --accent-foreground: 31 82% 23%;
+  --destructive: 0 72% 46%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 22% 86%;
+  --input: 214 22% 86%;
+  --ring: 171 80% 24%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  min-height: 100vh;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.panel {
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.metric-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}

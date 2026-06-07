@@ -1,0 +1,46 @@
+Track 01 - The Data & AI Challenge
+Intelligent Candidate Discovery
+The Data & AI Challenge track visual
+AI/ML Engineers
+Data Scientists
+Developers
+Search & Retrieval Specialists
+LLM Practitioners
+Overview
+
+Are you ready to redefine the future of talent acquisition?
+
+Recruiters are tasked with finding the perfect fit from oceans of profiles, but traditional keyword filters are simply not cutting it. They miss the hidden gems—the candidates whose true potential, intent, and subtle behavioral signals are lost in the noise.
+
+There has to be a smarter way and this is where we challenge you to build an AI brain for modern hiring. We're looking for intelligent systems that can move beyond surface-level keywords to deeply understand context, predict relevance, and transform massive talent pools into precise, actionable shortlists.
+
+Join us to build the next generation of predictive ranking engines.
+
+Your Mission: The Core Objective
+We challenge you to develop a robust, workable Proof of Concept that doesn't just filter, but intelligently ranks candidates.
+
+Your system should act as the ultimate AI recruiter, capable of:
+
+Deep Job Understanding: Interpreting complex, nuanced job descriptions.
+
+Contextual Relevance: Seeing beyond keywords to understand semantic fit.
+
+Signal Integration: Leveraging all data: profile attributes, career metadata, and crucial activity/behavioral signals.
+
+The Output: Delivering a lightning-fast, highly accurate, and expertly ranked shortlist of the best-fit candidates.
+
+No fixed architecture→unleash your innovation→Bring the best of your creativity
+
+Participants will be provided with a structured challenge dataset containing.
+
+Submission Checklist
+Show us your brilliance. Your submission must include:
+
+The Code
+A well-organized GitHub repository with your complete implementation.
+
+The Blueprint
+Clear Documentation or README explaining your methodology, technical choices, and system architecture.
+
+The Results
+A ranked output file (in the predefined format) detailing your recommended candidate shortlist.

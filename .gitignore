@@ -1,0 +1,28 @@
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Provided dataset bundle is large and should be downloaded/provided separately.
+# Brackets are escaped so the literal folder name is matched (not a glob class).
+\[PUB\] India_runs_data_and_ai_challenge/
+__MACOSX/
+
+# Stray screenshots dropped into the repo root.
+Screenshot*.png
+
+# Local Claude Code tooling config.
+.claude/
+
+# Temporary smoke outputs.
+outputs/*smoke*
+outputs/speed_*
+dev-server*.log
+dev-server*.log

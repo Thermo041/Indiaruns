@@ -1,0 +1,33 @@
+{
+  "name": "redrob-talent-ranker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "rank": "python ./ranking/rank.py --candidates ./candidates.jsonl --out ./outputs/submission.csv --json-out ./outputs/ranking_result.json --top-k 100",
+    "rank:bundle": "python ./ranking/rank.py --candidates \"./[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl\" --out ./outputs/submission.csv --json-out ./outputs/ranking_result.json --top-k 100",
+    "validate": "python \"./[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/validate_submission.py\" ./outputs/submission.csv"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.5",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "1.17.0",
+    "next": "16.2.7",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "tailwind-merge": "3.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.0",
+    "@types/node": "25.9.2",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "autoprefixer": "10.5.0",
+    "postcss": "8.5.15",
+    "tailwindcss": "4.3.0",
+    "typescript": "6.0.3"
+  }
+}

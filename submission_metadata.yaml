@@ -1,0 +1,59 @@
+# Fill these values before portal upload.
+
+team_name: "CreatusEst"
+
+primary_contact:
+  name: "Devesh Danderwal"
+  email: "deveshdanderwal@gmail.com"
+  phone: "8319366730"
+
+team_members:
+  - name: "Devesh Danderwal"
+    email: "deveshdanderwal@gmail.com"
+    role: "AI Engineer & Team Lead"
+  - name: "Aditya Patel"
+    email: "adityapatel1335@gmail.com"
+    role: "Full-Stack Developer"
+
+github_repo: "TODO"
+sandbox_link: "https://colab.research.google.com/drive/18Y7XspdreT6rrO2FA8dDqh5AaLK4VUdL?usp=sharing"
+
+reproduce_command: >
+  python ./ranking/rank.py --candidates ./candidates.jsonl --out ./outputs/submission.csv --json-out ./outputs/ranking_result.json --top-k 100
+
+compute:
+  platform: "Windows local machine"
+  cpu_cores: 16
+  ram_gb: 16
+  python_version: "3.13.3"
+  node_version: "22.12.0"
+  os: "Windows"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+  observed_full_ranking_runtime_seconds: 20.4
+
+ai_tools_used:
+  - "ChatGPT"
+  - "Claude"
+
+ai_usage_summary: |
+  Used AI assistance for code generation, debugging, UI implementation, and documentation.
+  The ranking step itself makes no external AI/API calls and does not send candidate data to hosted LLMs.
+
+methodology_summary: |
+  Deterministic CPU-only ranker with hybrid lexical and structured scoring. The system
+  combines technical evidence for retrieval/ranking/vector search/evaluation, production
+  career history, title alignment, seniority band, India/logistics fit, and Redrob behavioral
+  signals. It applies explicit penalties for keyword-stuffed side-project profiles, stale or
+  unresponsive candidates, services-only backgrounds, suspicious skill claims, and logistics
+  mismatch. The script streams candidates from JSONL and writes the required top-100 CSV
+  with fact-grounded reasoning for each ranked candidate.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
