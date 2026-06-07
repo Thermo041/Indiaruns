@@ -8,7 +8,7 @@
     "start": "next start",
     "rank": "python ./ranking/rank.py --candidates ./candidates.jsonl --out ./outputs/submission.csv --json-out ./outputs/ranking_result.json --top-k 100",
     "rank:bundle": "python ./ranking/rank.py --candidates \"./[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl\" --out ./outputs/submission.csv --json-out ./outputs/ranking_result.json --top-k 100",
-    "validate": "python \"./[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/validate_submission.py\" ./outputs/submission.csv"
+    "validate": "python ./validate_submission.py ./outputs/submission.csv"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.2.5",
