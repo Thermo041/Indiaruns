@@ -11,7 +11,7 @@ candidate_id,rank,score,reasoning
 ## Live Demo
 
 - Dashboard (read-only): https://indiaruns.vercel.app/
-- Runnable sandbox (Colab, executes the ranker on a sample): see `submission_metadata.yaml` `sandbox_link`.
+- Runnable sandbox (Colab, executes the ranker on a sample): see `submission_metadata.yaml` `sandbox_link:https://colab.research.google.com/drive/18Y7XspdreT6rrO2FA8dDqh5AaLK4VUdL?usp=sharing`.
 
 The Vercel dashboard showcases the precomputed top-100 with score breakdowns,
 penalties, and per-candidate reasoning. Live ranking/validation run locally only
