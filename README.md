@@ -73,12 +73,6 @@ Or use the npm script:
 npm run rank
 ```
 
-For this local Windows workspace, where the zip is extracted into the provided nested folder, use:
-
-```bash
-npm run rank:bundle
-```
-
 Validate:
 
 ```bash
