@@ -40,7 +40,7 @@ const componentLabels: Record<string, string> = {
   behavior: "Behavior",
 };
 
-export function TalentDashboard() {
+export function TalentDashboard({ hosted = false }: { hosted?: boolean }) {
   const [payload, setPayload] = useState<RankingPayload | null>(null);
   const [selectedId, setSelectedId] = useState<string>("");
   const [query, setQuery] = useState("");
@@ -146,12 +146,18 @@ export function TalentDashboard() {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            {hosted && <Badge variant="muted">Read-only demo</Badge>}
             <StatusPill label={status} running={isRunning || isValidating} />
             <Button variant="outline" onClick={() => void loadResults()} title="Refresh results">
               <RefreshCw className="h-4 w-4" />
               Refresh
             </Button>
-            <Button variant="outline" onClick={() => void validateSubmission()} disabled={isValidating || records.length === 0}>
+            <Button
+              variant="outline"
+              onClick={() => void validateSubmission()}
+              disabled={isValidating || records.length === 0 || hosted}
+              title={hosted ? "Validation runs locally only" : "Run the challenge validator"}
+            >
               {isValidating ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileCheck2 className="h-4 w-4" />}
               Validate
             </Button>
@@ -161,7 +167,11 @@ export function TalentDashboard() {
                 CSV
               </a>
             </Button>
-            <Button onClick={() => void runRanking()} disabled={isRunning}>
+            <Button
+              onClick={() => void runRanking()}
+              disabled={isRunning || hosted}
+              title={hosted ? "Live ranking runs locally only" : "Run the ranker over the full pool"}
+            >
               {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
               Run Ranking
             </Button>

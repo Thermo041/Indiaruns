@@ -15,6 +15,20 @@ function defaultCandidatesPath() {
 }
 
 export async function POST() {
+  // On serverless hosts there is no Python runtime and no 100k candidate file,
+  // so live ranking can only run locally. Serve a clear message instead.
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      {
+        ok: false,
+        hosted: true,
+        error:
+          "Live ranking runs locally only (needs Python + the 100k candidate file). This hosted demo shows the precomputed top-100 from outputs/.",
+      },
+      { status: 200 },
+    );
+  }
+
   const python = process.env.PYTHON_BIN || "python";
   const candidates = process.env.CANDIDATES_PATH || defaultCandidatesPath();
   const out = path.join(/* turbopackIgnore: true */ process.cwd(), "outputs", "submission.csv");
