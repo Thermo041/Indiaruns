@@ -8,6 +8,16 @@ The project ranks the top 100 candidates for the provided Senior AI Engineer JD 
 candidate_id,rank,score,reasoning
 ```
 
+## Live Demo
+
+- Dashboard (read-only): https://indiaruns.vercel.app/
+- Runnable sandbox (Colab, executes the ranker on a sample): see `submission_metadata.yaml` `sandbox_link`.
+
+The Vercel dashboard showcases the precomputed top-100 with score breakdowns,
+penalties, and per-candidate reasoning. Live ranking/validation run locally only
+(no Python or candidate file on the serverless host), so those actions are
+disabled in the hosted demo.
+
 ## Current Status
 
 - Full `candidates.jsonl` scan completed locally: 100,000 candidates.
