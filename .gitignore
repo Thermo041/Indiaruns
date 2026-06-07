@@ -21,6 +21,14 @@ Screenshot*.png
 # Local Claude Code tooling config.
 .claude/
 
+# Stray / non-code files kept local, out of the repo.
+logo.png.png
+file1.txt.txt
+file2.txt.txt
+scratch_docs.txt
+suggest.txt
+*.pptx
+
 # Temporary smoke outputs.
 outputs/*smoke*
 outputs/speed_*
