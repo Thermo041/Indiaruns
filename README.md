@@ -40,6 +40,7 @@ app/                         Next.js app and local API routes
 components/                  Dashboard and shadcn-style UI primitives
 lib/                         Shared frontend utilities
 ranking/rank.py              Official local ranking script
+validate_submission.py       Provided format validator (organizer tool)
 types/                       TypeScript types for ranking output
 outputs/submission.csv       Generated top-100 CSV
 outputs/ranking_result.json  Lightweight UI/debug output for top 100
@@ -148,7 +149,7 @@ The sandbox should demonstrate reproducibility on a small sample. The full 100K 
 
 ## Notes
 
-- `requirements.txt` is intentionally empty because `ranking/rank.py` uses only Python standard library modules.
+- `requirements.txt` is intentionally empty because `ranking/rank.py` uses only Python standard library modules, so the judged ranking step has no third-party dependencies.
 - `package-lock.json` pins the frontend dependency versions installed during this build.
-- `npm audit` currently reports zero vulnerabilities.
+- `npm audit` reports 2 moderate advisories in the Next.js frontend dev dependencies; these affect only the optional dashboard and are never used during ranking.
 - Use `--workers 1` for a single-process debug run, or `--workers N` to set an explicit CPU worker count.
