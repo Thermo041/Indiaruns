@@ -10,10 +10,10 @@ candidate_id,rank,score,reasoning
 
 ## Live Demo
 
-- **🖥️ UI Dashboard (Read-Only):** [https://indiaruns.vercel.app/](https://indiaruns.vercel.app/)
+- **🖥️ UI Dashboard (Read-Only):** [https://indiaruns.vercel.app/](https://indiaruns.vercel.app/) <br>
   *Showcases the precomputed top-100 candidates with score breakdowns, penalties, and per-candidate reasoning.*
 
-- **⚙️ Runnable Sandbox (Google Colab):** [Click here to run the sandbox](https://colab.research.google.com/drive/18Y7XspdreT6rrO2FA8dDqh5AaLK4VUdL?usp=sharing)
+- **⚙️ Runnable Sandbox (Google Colab):** [Click here to run the sandbox](https://colab.research.google.com/drive/18Y7XspdreT6rrO2FA8dDqh5AaLK4VUdL?usp=sharing) <br>
   *Executes the Python ranking script live on a small sample of candidates to prove reproducibility.*
 
 ## Current Status
