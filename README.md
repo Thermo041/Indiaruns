@@ -47,6 +47,12 @@ outputs/ranking_result.json  Lightweight UI/debug output for top 100
 
 ## Reproduce The Submission
 
+First, clone this repository to your local machine and navigate into the folder:
+
+```bash
+git clone https://github.com/Thermo041/Indiaruns.git
+cd Indiaruns
+
 For Stage 3 reproduction, place or mount the released candidate file at the repo root:
 
 ```text
